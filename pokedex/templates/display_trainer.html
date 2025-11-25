@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <p>Has elegido el entrenador: <strong>{{ trainer.name | capfirst }}</strong></p>
+    <h3>Características</h3>
+    <ul>
+        <li>Nivel: {{ trainer.level }}</li>
+        <li>Edad: {{ trainer.age }} años</li>
+        <img src="{{ trainer.picture.url }}" alt="{{ trainer.name }}" class="card-img-top">
+    </ul>
+{% endblock content %}
