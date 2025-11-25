@@ -18,7 +18,7 @@ class PokemonSerializer(serializers.ModelSerializer):
                 ext = format.split('/')[-1]
                 return ContentFile(
                     base64.b64decode(imgstr),
-                    name=f'temp.{ext}'
+                    name=f'pokemon.{ext}'
                 )
             except Exception:
                 raise serializers.ValidationError("La imagen no se encuentra con base64 válida.")
