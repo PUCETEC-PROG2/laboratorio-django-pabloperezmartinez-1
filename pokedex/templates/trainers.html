@@ -1,31 +1,35 @@
-{% extends "base.html" %}
-{% block title %}Listado de trainer{% endblock title %}
+{% extends 'base.html' %}
+{% block title %}
+  Listado de trainer
+{% endblock %}
 {% block content %}
-<p class="p-2">Hola, este es tu primer sitio en Django</p>
-<ul class="list-group">
-    <div class="row">
-        {% for trainer in trainers %}
-        <div class="col-sm-6 col-md-4 col-lg-3">
-            <div class="card">
-                <img src="{{ trainer.picture.url }}" alt="{{ trainer.name }}" class="card-img-top">
-                <div class="card-body">
-                    <h5 class="card-title">{{ trainer.name }}</h5>
-                    <a class="btn btn-primary" href="{% url "pokedex:trainer" trainer.id %}" role="button">
-                        <i class="fa-solid fa-eye"></i>
-                    </a>
-                    {% if user.is_authenticated %}
-                        <a class="btn btn-primary" href="{% url "pokedex:edit_trainer" trainer.id %}" role="button">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                        <a class="btn btn-danger" href="{% url "pokedex:delete_trainer" trainer.id %}" role="button">
-                            <i class="fa-solid fa-trash"></i>
-                        </a>
-                    {% endif %}
-                </div>
-            </div>
+    <h1 class="display-3 text-center p-2">Entrenadores</h1>
+    <ul class="list-group">
+    {% if user.is_authenticated %}
+        <div class="text-right p-2">
+        <a class="btn btn-success" href="{% url 'pokedex:add_trainer' %}">
+            <i class="fa-solid fa-plus"></i>
+            Añadir Entrenador
+        </a>
         </div>
-        {% endfor %}
+        <hr>
+    {% endif %}
+    <div class="row">
+      {% for trainer in trainers %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
+            <img src="{{ trainer.picture.url }}" alt="{{ trainer.name }}" class="card-img-top" />
+            <div class="card-body">
+              <h5 class="card-title">{{ trainer.name }}</h5>
+              <a class="btn btn-primary" href="{% url 'pokedex:trainer' trainer.id %}" role="button"><i class="fa-solid fa-eye"></i></a>
+              {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'pokedex:edit_trainer' trainer.id %}" role="button"><i class="fa-solid fa-pencil"></i></a>
+                <a class="btn btn-danger" href="{% url 'pokedex:delete_trainer' trainer.id %}" role="button"><i class="fa-solid fa-trash"></i></a>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
     </div>
-</ul>
-{% endblock content %}
-        
+  </ul>
+{% endblock %}
