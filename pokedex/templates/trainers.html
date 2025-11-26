@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Listado de trainer{% endblock title %}
 {% block content %}
-<p class="p-2">Hola, este es tu primer sitio en Django</p>
+<h1>Entrenadores</h1>
+
+{% if user.is_authenticated %}
+<div class="text-right p-3">
+    <a class="btn btn-success" href="{% url 'pokedex:add_trainer' %}">
+        <i class="fa-solid fa-plus"></i>
+        Añadir Entrenador
+    </a>
+</div>
+{% endif %}
+
+
 <ul class="list-group">
     <div class="row">
         {% for trainer in trainers %}
