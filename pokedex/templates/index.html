@@ -18,7 +18,9 @@
         {% for pokemon in pokemons %}
         <div class="col-sm-6 col-md-4 col-lg-3">
             <div class="card">
-                <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="card-img-top">
+                {% if pokemon.picture %}
+                    <img src="{{ pokemon.picture.url }}" alt="{{ pokemon.name }}" class="card-img-top">
+                {% endif %}
                 <div class="card-body">
                     <h5 class="card-title">{{ pokemon.name }}</h5>
                     <p class="card-text">Peso: {{ pokemon.weight }} | Altura: {{ pokemon.height }}</p>

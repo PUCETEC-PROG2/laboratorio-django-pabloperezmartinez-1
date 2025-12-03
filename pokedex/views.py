@@ -7,7 +7,7 @@ from .models import Pokemon, Trainer
 from .forms import PokemonForm, TrainerForm
 
 def index(request):
-    pokemons = Pokemon.objects.all()
+    pokemons = Pokemon.objects.order_by('name')
     template = loader.get_template('index.html')
     return HttpResponse(template.render({'pokemons': pokemons}, request))
 
